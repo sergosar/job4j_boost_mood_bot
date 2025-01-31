@@ -1,4 +1,4 @@
-package ru.job4j.service;
+package ru.job4j.bmb.services;
 
 public class AchievementService {
 }

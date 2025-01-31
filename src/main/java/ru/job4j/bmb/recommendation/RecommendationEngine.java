@@ -1,4 +1,4 @@
-package ru.job4j.recommendation;
+package ru.job4j.bmb.recommendation;
 
 public class RecommendationEngine implements ContentProvider {
 }
