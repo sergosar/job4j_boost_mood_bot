@@ -82,7 +82,7 @@ public class TgRemoteService extends TelegramLongPollingBot {
         keyboard.add(List.of(createBtn("Готов к танцам \uD83D\uDE04", "dance_ready")));
         keyboard.add(List.of(createBtn("Где мой кофе?! \uD83D\uDE23", "need_coffee")));
         keyboard.add(List.of(createBtn("Слипаются глаза \uD83D\uDE29", "sleepy")));
-        keyboard.add(List.of(createBtn("Достала жена Татьяна \uD83E\uDD2C", "sleepy")));
+        keyboard.add(List.of(createBtn("Достала жена Татьяна \uD83E\uDD2C", "angry")));
 
         inlineKeyboardMarkup.setKeyboard(keyboard);
         message.setReplyMarkup(inlineKeyboardMarkup);
