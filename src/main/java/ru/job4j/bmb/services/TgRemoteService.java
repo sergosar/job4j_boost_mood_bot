@@ -29,6 +29,7 @@ public class TgRemoteService extends TelegramLongPollingBot {
         MOOD_RESP.put("dance_ready", "Супер! Танцуй, как будто никто не смотрит. Или, наоборот, как будто все смотрят!");
         MOOD_RESP.put("need_coffee", "Кофе уже в пути! Осталось только подождать... И ещё немного подождать...");
         MOOD_RESP.put("sleepy", "Пора на боковую! Даже супергерои отдыхают, ты не исключение.");
+        MOOD_RESP.put("angry", "Не парься, просто терпи а то может быть хуже, а ТАНЯ редиска!.");
     }
 
     public TgRemoteService(@Value("${telegram.bot.name}") String botName,
@@ -81,6 +82,7 @@ public class TgRemoteService extends TelegramLongPollingBot {
         keyboard.add(List.of(createBtn("Готов к танцам \uD83D\uDE04", "dance_ready")));
         keyboard.add(List.of(createBtn("Где мой кофе?! \uD83D\uDE23", "need_coffee")));
         keyboard.add(List.of(createBtn("Слипаются глаза \uD83D\uDE29", "sleepy")));
+        keyboard.add(List.of(createBtn("Достала жена Татьяна \uD83E\uDD2C", "angry")));
 
         inlineKeyboardMarkup.setKeyboard(keyboard);
         message.setReplyMarkup(inlineKeyboardMarkup);
