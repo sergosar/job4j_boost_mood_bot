@@ -1,30 +1,27 @@
 package ru.job4j.bmb.services;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
-import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import ru.job4j.bmb.repository.UserRepository;
 
 @Service
-public class ReminderService implements BeanNameAware {
-    @Autowired
-    private ApplicationContext applicationContext;
+public class ReminderService {
+    private final TgRemoteService tgRemoteService;
+    private final UserRepository userRepository;
 
-    @PostConstruct
-    public void init() {
-        System.out.println("Bean ReminderService is going through init.");
+    public ReminderService(TgRemoteService tgRemoteService, UserRepository userRepository) {
+        this.tgRemoteService = tgRemoteService;
+        this.userRepository = userRepository;
     }
 
-    @PreDestroy
-    public void destroy() {
-        System.out.println("Bean ReminderService will be destroyed now.");
-    }
-
-    @Override
-    public void setBeanName(String name) {
-        String[] beanNames = applicationContext.getBeanNamesForType(ReminderService.class);
-        System.out.println("Имя этого бина: " + beanNames[0]);
+    @Scheduled(fixedRateString = "${remind.period}")
+    public void ping() {
+        for (var user : userRepository.findAll()) {
+            var message = new SendMessage();
+            message.setChatId(user.getChatId());
+            message.setText("Ping");
+            tgRemoteService.send(message);
+        }
     }
 }

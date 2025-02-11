@@ -27,4 +27,8 @@ public class UserFakeRepository implements UserRepository {
     public void save(User user) {
         userMap.put(user.getClientId(), user);
     }
+
+    public void add(User user) {
+        userMap.put(user.getClientId(), user);
+    }
 }

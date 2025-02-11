@@ -36,4 +36,6 @@ public class User {
         this.chatId = chatId;
     }
 
+    public User() {
+    }
 }
