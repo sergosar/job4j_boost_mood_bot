@@ -1,5 +1,7 @@
 package ru.job4j.bmb.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.job4j.bmb.content.Content;
 import ru.job4j.bmb.content.ContentProvider;
@@ -12,7 +14,8 @@ public class RecommendationEngine {
     private final List<ContentProvider> contents;
     private static final Random RND = new Random(System.currentTimeMillis());
 
-    public RecommendationEngine(List<ContentProvider> contents) {
+    @Autowired
+    public RecommendationEngine(@Qualifier("selected") List<ContentProvider> contents) {
         this.contents = contents;
     }
 
