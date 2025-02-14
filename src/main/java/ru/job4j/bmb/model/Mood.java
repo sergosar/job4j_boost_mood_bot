@@ -1,15 +1,14 @@
 package ru.job4j.bmb.model;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "mb_mood")
 @Getter
 @Setter
 @EqualsAndHashCode
+@NoArgsConstructor
 public class Mood {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,5 +17,10 @@ public class Mood {
     private String text;
 
     private boolean good;
+
+    public Mood(String text, boolean good) {
+        this.text = text;
+        this.good = good;
+    }
 
 }
