@@ -6,20 +6,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "mb_user")
+@Table(name = "mb_achievement")
 @Getter
 @Setter
 @EqualsAndHashCode
-public class User {
+public class Achievement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "client_id", unique = true)
-    private long clientId;
+    private long createAt;
 
-    @Column(name = "chat_id")
-    private long chatId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "award_id")
+    private Award award;
 
 }
 

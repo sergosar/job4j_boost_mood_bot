@@ -6,20 +6,17 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "mb_user")
+@Table(name = "mb_mood")
 @Getter
 @Setter
 @EqualsAndHashCode
-public class User {
+public class Mood {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "client_id", unique = true)
-    private long clientId;
+    private String text;
 
-    @Column(name = "chat_id")
-    private long chatId;
+    private boolean good;
 
 }
-

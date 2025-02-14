@@ -6,20 +6,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "mb_user")
+@Table(name = "mb_mood_content")
 @Getter
 @Setter
 @EqualsAndHashCode
-public class User {
+public class MoodContent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "client_id", unique = true)
-    private long clientId;
+    @ManyToOne
+    @JoinColumn(name = "mood_id")
+    private Mood mood;
 
-    @Column(name = "chat_id")
-    private long chatId;
+    private String text;
 
 }
 
