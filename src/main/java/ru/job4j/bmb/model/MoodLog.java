@@ -3,6 +3,7 @@ package ru.job4j.bmb.model;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
+@NoArgsConstructor
 public class MoodLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +26,11 @@ public class MoodLog {
     private Mood mood;
 
     private long createdAt;
+
+    public MoodLog(User user, Mood mood, long createdAt) {
+        this.user = user;
+        this.mood = mood;
+        this.createdAt = createdAt;
+    }
 }
 
