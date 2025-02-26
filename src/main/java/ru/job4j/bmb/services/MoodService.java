@@ -6,10 +6,10 @@ import ru.job4j.bmb.model.Achievement;
 import ru.job4j.bmb.model.Mood;
 import ru.job4j.bmb.model.MoodLog;
 import ru.job4j.bmb.model.User;
-import ru.job4j.bmb.repository.AchievementRepository;
-import ru.job4j.bmb.repository.MoodLogRepository;
-import ru.job4j.bmb.repository.MoodRepository;
-import ru.job4j.bmb.repository.UserRepository;
+import ru.job4j.bmb.repositories.AchievementRepository;
+import ru.job4j.bmb.repositories.MoodLogRepository;
+import ru.job4j.bmb.repositories.MoodRepository;
+import ru.job4j.bmb.repositories.UserRepository;
 
 import java.time.Instant;
 import java.time.ZoneId;

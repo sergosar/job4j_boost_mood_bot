@@ -10,7 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.job4j.bmb.content.Content;
 import ru.job4j.bmb.exception.SentContentException;
-import ru.job4j.bmb.ui.TgUI;
+import ru.job4j.bmb.component.TgUI;
 
 @Service
 public class TelegramBotService extends TelegramLongPollingBot implements SentContent {

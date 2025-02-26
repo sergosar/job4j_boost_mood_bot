@@ -2,26 +2,42 @@ package ru.job4j.bmb.services;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import ru.job4j.bmb.repository.UserRepository;
+import ru.job4j.bmb.content.Content;
+import ru.job4j.bmb.repositories.MoodLogRepository;
+import ru.job4j.bmb.component.TgUI;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 @Service
 public class ReminderService {
-    private final TelegramBotService telegramBotService;
-    private final UserRepository userRepository;
+    private final SentContent sentContent;
+    private final MoodLogRepository moodLogRepository;
+    private final TgUI tgUI;
 
-    public ReminderService(TelegramBotService telegramBotService, UserRepository userRepository) {
-        this.telegramBotService = telegramBotService;
-        this.userRepository = userRepository;
+    public ReminderService(SentContent sentContent,
+                           MoodLogRepository moodLogRepository, TgUI tgUI) {
+        this.sentContent = sentContent;
+        this.moodLogRepository = moodLogRepository;
+        this.tgUI = tgUI;
     }
 
-    @Scheduled(fixedRateString = "${remind.period}")
-    public void ping() {
-        for (var user : userRepository.findAll()) {
-            var message = new SendMessage();
-            message.setChatId(user.getChatId());
-            message.setText("Ping");
-            telegramBotService.send(message);
+    @Scheduled(fixedRateString = "${recommendation.alert.period}")
+    public void remindUsers() {
+        var startOfDay = LocalDate.now()
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli();
+        var endOfDay = LocalDate.now()
+                .plusDays(1)
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli() - 1;
+        for (var user : moodLogRepository.findUsersWhoDidNotVoteToday(startOfDay, endOfDay)) {
+            var content = new Content(user.getChatId());
+            content.setText("Как настроение?");
+            content.setMarkup(tgUI.buildButtons());
+            sentContent.sent(content);
         }
     }
 }

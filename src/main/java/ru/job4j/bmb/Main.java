@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import ru.job4j.bmb.repository.AwardRepository;
-import ru.job4j.bmb.repository.MoodContentRepository;
-import ru.job4j.bmb.repository.MoodRepository;
+import ru.job4j.bmb.repositories.AwardRepository;
+import ru.job4j.bmb.repositories.MoodContentRepository;
+import ru.job4j.bmb.repositories.MoodRepository;
 
 @EnableAspectJAutoProxy
 @EnableScheduling
