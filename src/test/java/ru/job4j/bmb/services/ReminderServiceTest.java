@@ -1,6 +1,6 @@
 package ru.job4j.bmb.services;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import ru.job4j.bmb.component.TgUI;
 import ru.job4j.bmb.content.Content;
 import ru.job4j.bmb.model.Mood;

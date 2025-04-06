@@ -35,8 +35,7 @@ public class MoodLogFakeRepository
     @Override
     public List<User> findUsersWhoDidNotVoteToday(long startOfDay, long endOfDay) {
         return memory.values().stream()
-                .filter(moodLog -> moodLog.getCreatedAt() >= startOfDay)
-                .filter(moodLog -> moodLog.getCreatedAt() <= endOfDay)
+                .filter(moodLog -> moodLog.getCreatedAt() <= startOfDay)
                 .map(MoodLog::getUser)
                 .distinct()
                 .collect(Collectors.toList());
